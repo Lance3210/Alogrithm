@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Exercises._04_字符串 {
+namespace Exercises.字符串 {
 	class StringExe {
 		/***************************************leetcode***************************************/
 		// Title : 520. 检测大写字母
