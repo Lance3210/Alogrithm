@@ -2,52 +2,64 @@
 using DataStructure.树.二叉树;
 using System;
 
-namespace DataStructure.树.二叉搜索树.平衡二叉搜索树.红黑树 {
+namespace DataStructure.树.二叉搜索树.平衡二叉搜索树.红黑树
+{
 	//红黑树
-	class RBTree<T> : BalancedBinarySearchTree<T> {
+	class RBTree<T> : BalancedBinarySearchTree<T>
+	{
 		//默认构造
-		public RBTree() {
+		public RBTree()
+		{
 
 		}
 
 		//需要传入比较方法的构造函数
-		public RBTree(Func<T, T, int> comparer) : base() {
+		public RBTree(Func<T, T, int> comparer) : base()
+		{
 
 		}
 
 		#region 辅助函数
 		//节点染色
-		private Node<T> Dye(Node<T> node, RBNodeColor color) {
-			if (node == null) {
+		private Node<T> Dye(Node<T> node, RBNodeColor color)
+		{
+			if (node == null)
+			{
 				return node;
 			}
 			((RBNode<T>)node).color = color;
 			return node;
 		}
 		//染红
-		private Node<T> DyeRed(Node<T> node) {
+		private Node<T> DyeRed(Node<T> node)
+		{
 			return Dye(node, RBNodeColor.RED);
 		}
 		//染黑
-		private Node<T> DyeBlack(Node<T> node) {
+		private Node<T> DyeBlack(Node<T> node)
+		{
 			return Dye(node, RBNodeColor.BLACK);
 		}
 		//颜色判断
-		private RBNodeColor GetColor(Node<T> node) {
+		private RBNodeColor GetColor(Node<T> node)
+		{
 			return node == null ? RBNodeColor.BLACK : ((RBNode<T>)node).color;
 		}
 		//是否为黑色
-		private bool IsBlack(Node<T> node) {
+		private bool IsBlack(Node<T> node)
+		{
 			return GetColor(node) == RBNodeColor.BLACK;
 		}
 		//是否为红色
-		private bool IsRed(Node<T> node) {
+		private bool IsRed(Node<T> node)
+		{
 			return GetColor(node) == RBNodeColor.RED;
 		}
 		#endregion
 
 		//重写节点创建
-		protected override Node<T> CreatNode(T element, Node<T> parent) {
+		protected override Node<T> CreatNode(T element, Node<T> parent)
+		{
 			return new RBNode<T>(element, parent);
 		}
 
@@ -66,18 +78,22 @@ namespace DataStructure.树.二叉搜索树.平衡二叉搜索树.红黑树 {
 		//二、uncle为黑色（或null）
 		//LL/RR，grand为黑色，则对grand右旋/左旋，parent染黑，grand染红。parent为本层根节点
 		//LR/RL，grand为黑色，则对parent左旋/右旋，grand右旋/左旋，node染黑，grand染红。添加节点为本层根节点
-		protected override void AfterAdd(Node<T> node) {
+		protected override void AfterAdd(Node<T> node)
+		{
 			//parent = null，root染黑
-			if (node.parent == null) {
+			if (node.parent == null)
+			{
 				DyeBlack(node);
 				return;
 			}
 			//parent黑色，无须处理
-			if (IsBlack(node.parent)) {
+			if (IsBlack(node.parent))
+			{
 				return;
 			}
 			//uncle为红色
-			if (IsRed(node.Uncle)) {
+			if (IsRed(node.Uncle))
+			{
 				//parent uncle 染黑
 				DyeBlack(node.parent);
 				DyeBlack(node.Uncle);
@@ -86,9 +102,11 @@ namespace DataStructure.树.二叉搜索树.平衡二叉搜索树.红黑树 {
 				return;
 			}
 			//uncle为黑色
-			if (IsBlack(node.Uncle)) {
+			if (IsBlack(node.Uncle))
+			{
 				Node<T> grand = node.Grand;
-				if (node.parent.IsLeftChild) {
+				if (node.parent.IsLeftChild)
+				{
 					DyeRed(node.Grand);
 					if (node.IsLeftChild)//LL
 					{
@@ -101,7 +119,8 @@ namespace DataStructure.树.二叉搜索树.平衡二叉搜索树.红黑树 {
 					}
 					RightRotate(grand);
 				}
-				else {
+				else
+				{
 					DyeRed(node.Grand);
 					if (node.IsLeftChild)//RL
 					{
@@ -135,12 +154,14 @@ namespace DataStructure.树.二叉搜索树.平衡二叉搜索树.红黑树 {
 		protected override void AfterRemove(Node<T> node)//传入的node有两种意思，一种就是叶子节点，一种是用于替代的叶子节点
 		{
 			//删除节点为红色或用于取代删除节点的节点（replacement）为红色（即合并了最终删除的是RED的情况）
-			if (IsRed(node)) {
+			if (IsRed(node))
+			{
 				DyeBlack(node);//虽然其中删除RED叶子节点的情况不需要染黑，但也无妨，可以省下传入replacement参数（与AVL树统一函数格式）
 				return;
 			}
 			//删除的是根节点
-			if (node.parent == null) {
+			if (node.parent == null)
+			{
 				return;
 			}
 
@@ -152,9 +173,11 @@ namespace DataStructure.树.二叉搜索树.平衡二叉搜索树.红黑树 {
 			Node<T> sibling = flag ? node.parent.right : node.parent.left;
 
 			//被删除节点在左边，sibling在右边	
-			if (flag) {
+			if (flag)
+			{
 				//删除节点的sibling为Red
-				if (IsRed(sibling)) {
+				if (IsRed(sibling))
+				{
 					DyeBlack(sibling);
 					DyeRed(node.parent);
 					LeftRotate(node.parent);
@@ -191,7 +214,8 @@ namespace DataStructure.树.二叉搜索树.平衡二叉搜索树.红黑树 {
 			else//被删除节点在右边，sibling在左边，与上面对称
 			{
 				//删除节点的sibling为Red
-				if (IsRed(sibling)) {
+				if (IsRed(sibling))
+				{
 					DyeBlack(sibling);
 					DyeRed(node.parent);
 					RightRotate(node.parent);

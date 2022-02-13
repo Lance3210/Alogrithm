@@ -1,4 +1,5 @@
-﻿namespace Algorithm.排序 {
+﻿namespace Algorithm.排序
+{
 	//归并排序
 	//不断将当前序列平均分割为2个子序列直到不能分割位置
 	//不断将两个子序列合并为一个有序序列直到剩只下一个有序序列
@@ -9,11 +10,13 @@
 	//最好时间复杂度：O(nlogn)
 	//空间复杂度：O(n)，分配了一半的额外的空间n/2 + 递归logn次
 	//稳定性：稳定
-	class MergeSort<T> : SortBase<T> {
+	class MergeSort<T> : SortBase<T>
+	{
 		//排序入口
 		//提前分配一半的数组空间用于备份每一次合并操作的左半部分数据
 		private T[] leftArray;
-		public override void Sorting(T[] array) {
+		public override void Sorting(T[] array)
+		{
 			base.Sorting(array);
 			//备份左半部分元素
 			leftArray = new T[elements.Length >> 1];
@@ -38,7 +41,8 @@
 		//对指定范围内数据进行归并排序的合并操作，内部使用递归
 		//将[begin, mid)和(mid, end]范围内序列合并为一个有序序列
 		//参数分别为：左半部分头，分割点，有半部分尾
-		private void Merge(int begin, int mid, int end) {
+		private void Merge(int begin, int mid, int end)
+		{
 			int leftHead = 0;//左半部分头尾标记（leftHead为0是因为操作的是leftArray）
 			int leftEnd = mid - begin;
 			int rightHead = mid;//右半部分头尾标记
@@ -46,14 +50,17 @@
 			int index = begin;//合并数组的插入索引，要从begin开始
 
 			//备份左边数组
-			for (int i = leftHead; i < leftEnd; i++) {
+			for (int i = leftHead; i < leftEnd; i++)
+			{
 				leftArray[i] = elements[begin + i];//begin才是我们要真正操作的左半部分头
 			}
 
 			//左边先结束就无须移动了
-			while (leftHead < leftEnd) {
+			while (leftHead < leftEnd)
+			{
 				//两两比较两边数组中的元素，条件顺序不能错，因为可能存在rightHead越界（右边先完成情况）
-				if (rightHead < rightEnd && CompareByElement(elements[rightHead], leftArray[leftHead]) < 0) {
+				if (rightHead < rightEnd && CompareByElement(elements[rightHead], leftArray[leftHead]) < 0)
+				{
 					elements[index++] = elements[rightHead++];//将右边的取出后索引后移
 				}
 				else//要在相同元素时先取出左边的，否则不稳定

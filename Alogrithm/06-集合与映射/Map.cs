@@ -1,8 +1,10 @@
 ﻿using System;
 
-namespace DataStructure.集合与映射 {
+namespace DataStructure.集合与映射
+{
 	//映射基类
-	public abstract class Map<K, V> {
+	public abstract class Map<K, V>
+	{
 		protected int size;
 		public int Size() => size;
 		public bool IsEmpty => size == 0;
@@ -12,8 +14,10 @@ namespace DataStructure.集合与映射 {
 		public abstract V Remove(K key);
 		public abstract bool ContainsKey(K key);
 		public abstract bool ContainsValue(V value);
-		public virtual void Traversal(Func<K, V, bool> func) {
-			if (size == 0 || func == null) {
+		public virtual void Traversal(Func<K, V, bool> func)
+		{
+			if (size == 0 || func == null)
+			{
 				return;
 			}
 		}

@@ -3,9 +3,12 @@ using Algorithm.串匹配;
 using System.IO;
 using System.Text;
 
-namespace Algorithm.测试 {
-	static class Program {
-		static void Main(string[] args) {
+namespace Algorithm.测试
+{
+	static class Program
+	{
+		static void Main(string[] args)
+		{
 			string path = "D:\\Demo\\C#\\Alogrithm\\Algorithm\\13-串匹配\\text.txt";
 			WriteText(path, 10);
 
@@ -19,15 +22,18 @@ namespace Algorithm.测试 {
 
 		}
 
-		private static string GetText(string path) {
+		private static string GetText(string path)
+		{
 			StreamReader sr = new StreamReader(path, Encoding.Default);
 			return sr.ReadToEnd();
 		}
 
-		static void WriteText(string path, long count) {
+		static void WriteText(string path, long count)
+		{
 			FileStream file = new FileStream(path, FileMode.Create);
 			StringBuilder sb = new StringBuilder();
-			for (long i = 0; i < count; i++) {
+			for (long i = 0; i < count; i++)
+			{
 				sb.Append(i);
 			}
 			byte[] data = Encoding.Default.GetBytes(sb.ToString());

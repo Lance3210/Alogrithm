@@ -1,14 +1,18 @@
 ﻿using System;
 
-namespace Algorithm.Util {
+namespace Algorithm.Util
+{
 	/// <summary>
 	/// 使用前建议先执行一次TimeTest(null)，否则结果不会准确
 	/// </summary>
-	static class TimeTestUtil {
+	static class TimeTestUtil
+	{
 		//无参
-		public static void TimeTest(Action action) {
+		public static void TimeTest(Action action)
+		{
 			DateTime dateTime = DateTime.Now;
-			if (action == null) {
+			if (action == null)
+			{
 				return;
 			}
 			action();
@@ -16,9 +20,11 @@ namespace Algorithm.Util {
 		}
 
 		//T
-		public static void TimeTest<T>(Action<T> action, T arg) {
+		public static void TimeTest<T>(Action<T> action, T arg)
+		{
 			DateTime dateTime = DateTime.Now;
-			if (action == null) {
+			if (action == null)
+			{
 				return;
 			}
 			action(arg);
@@ -26,10 +32,12 @@ namespace Algorithm.Util {
 		}
 
 		//T T
-		public static void TimeTest<T>(Func<T, T> func, T arg) {
+		public static void TimeTest<T>(Func<T, T> func, T arg)
+		{
 			T result;
 			DateTime dateTime = DateTime.Now;
-			if (func == null) {
+			if (func == null)
+			{
 				return;
 			}
 			result = func(arg);
@@ -37,10 +45,12 @@ namespace Algorithm.Util {
 		}
 
 		//T T T
-		public static void TimeTest<T>(Func<T, T, T> func, T arg1, T arg2) {
+		public static void TimeTest<T>(Func<T, T, T> func, T arg1, T arg2)
+		{
 			T result;
 			DateTime dateTime = DateTime.Now;
-			if (func == null) {
+			if (func == null)
+			{
 				return;
 			}
 			result = func(arg1, arg2);
@@ -48,10 +58,12 @@ namespace Algorithm.Util {
 		}
 
 		//T T Q
-		public static void TimeTest<T, Q>(Func<T, T, Q> func, T arg1, T arg2) {
+		public static void TimeTest<T, Q>(Func<T, T, Q> func, T arg1, T arg2)
+		{
 			Q result;
 			DateTime dateTime = DateTime.Now;
-			if (func == null) {
+			if (func == null)
+			{
 				return;
 			}
 			result = func(arg1, arg2);
@@ -59,10 +71,12 @@ namespace Algorithm.Util {
 		}
 
 		//T[] T
-		public static void TimeTest<T>(Func<T[], T> func, T[] array) {
+		public static void TimeTest<T>(Func<T[], T> func, T[] array)
+		{
 			T result;
 			DateTime dateTime = DateTime.Now;
-			if (func == null) {
+			if (func == null)
+			{
 				return;
 			}
 			result = func(array);
@@ -70,10 +84,12 @@ namespace Algorithm.Util {
 		}
 
 		//T[] T T
-		public static void TimeTest<T>(Func<T[], T, T> func, T[] array, T arg) {
+		public static void TimeTest<T>(Func<T[], T, T> func, T[] array, T arg)
+		{
 			T result;
 			DateTime dateTime = DateTime.Now;
-			if (func == null) {
+			if (func == null)
+			{
 				return;
 			}
 			result = func(array, arg);
@@ -81,20 +97,24 @@ namespace Algorithm.Util {
 		}
 
 		//T[] T[] T T
-		public static void TimeTest<T>(Func<T[], T[], T, T> func, T[] array1, T[] array2, T arg) {
+		public static void TimeTest<T>(Func<T[], T[], T, T> func, T[] array1, T[] array2, T arg)
+		{
 			T result;
 			DateTime dateTime = DateTime.Now;
-			if (func == null) {
+			if (func == null)
+			{
 				return;
 			}
 			result = func(array1, array2, arg);
 			PrintResult(func.Method.Name, result, DateTime.Now - dateTime);
 		}
 
-		private static void PrintResult<T>(string methodName, T result, TimeSpan timeSpan) {
+		private static void PrintResult<T>(string methodName, T result, TimeSpan timeSpan)
+		{
 			Console.WriteLine($"{methodName}\n{result}\t时间：{timeSpan.TotalMilliseconds} ms\n");
 		}
-		private static void PrintResult(string methodName, TimeSpan timeSpan) {
+		private static void PrintResult(string methodName, TimeSpan timeSpan)
+		{
 			Console.WriteLine($"{methodName}\n时间：{timeSpan.TotalMilliseconds} ms\n");
 		}
 	}

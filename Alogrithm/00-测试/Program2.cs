@@ -4,10 +4,13 @@ using DataStructure.树.二叉搜索树.平衡二叉搜索树.红黑树;
 using DataStructure.树.二叉树;
 using System;
 
-namespace DataStructure.测试 {
-	class Program2 {
+namespace DataStructure.测试
+{
+	class Program2
+	{
 		static int removeElement = 4;
-		static void Main2(string[] args) {
+		static void Main2(string[] args)
+		{
 			int[] nums = new int[] { 1, 2, 3 };
 			RBTree<int> rbt = new();
 			BuildTree(nums, rbt);
@@ -16,20 +19,24 @@ namespace DataStructure.测试 {
 		}
 
 		//生成二叉搜索树
-		private static void BuildTree<T>(T[] nums, BinarySearchTree<T> bst) {
+		private static void BuildTree<T>(T[] nums, BinarySearchTree<T> bst)
+		{
 			//Random random = new Random();
-			for (int i = 0; i < nums.Length; i++) {
+			for (int i = 0; i < nums.Length; i++)
+			{
 				//nums[i] = random.Next(1, count);
 				Console.Write(nums[i] + " ");
 			}
-			for (int i = 0; i < nums.Length; i++) {
+			for (int i = 0; i < nums.Length; i++)
+			{
 				bst.Add(nums[i]);
 			}
 			Console.WriteLine();
 		}
 
 		//二叉树遍历测试
-		private static void TraversalTest(BinarySearchTree<int> bst) {
+		private static void TraversalTest(BinarySearchTree<int> bst)
+		{
 			//前序遍历
 			Console.Write("前序遍历：");
 			bst.PreorderTraversal((n) => {
@@ -62,7 +69,8 @@ namespace DataStructure.测试 {
 		}
 
 		//红黑树遍历测试
-		private static void RBTreeTraversalTest(BinarySearchTree<int> bst) {
+		private static void RBTreeTraversalTest(BinarySearchTree<int> bst)
+		{
 			//前序遍历
 			Console.Write("前序遍历：");
 			bst.PreorderTraversal((n) => {
@@ -94,7 +102,8 @@ namespace DataStructure.测试 {
 		}
 
 		#region RBTree
-		private static void RETreeTest(int[] nums, RBTree<int> rbt) {
+		private static void RETreeTest(int[] nums, RBTree<int> rbt)
+		{
 			RBTreeTraversalTest(rbt);
 			Console.WriteLine("-----------------------------------------------------------");
 			Console.WriteLine($"Remove {removeElement}");
@@ -104,7 +113,8 @@ namespace DataStructure.测试 {
 		#endregion
 
 		#region AVLTree
-		private static void AVLTreeTest(int[] nums, AVLTree<int> avl) {
+		private static void AVLTreeTest(int[] nums, AVLTree<int> avl)
+		{
 			Console.WriteLine("树的高度：" + avl.TreeHeight);
 			Console.WriteLine("根节点高度：" + avl.Height(avl.Root));
 			Console.WriteLine("根节点右节点高度：" + (avl.Root.right as AVLNode<int>).Height);
@@ -117,7 +127,8 @@ namespace DataStructure.测试 {
 		#endregion
 
 		#region BSTree
-		private static void BSTTest() {
+		private static void BSTTest()
+		{
 			int[] nums = new int[] { 4, 2, 3, 1, 5, 6, 7, 8, 9, 10 };
 			BinarySearchTree<int> bst = new BinarySearchTree<int>();
 			BuildTree(nums, bst);
@@ -141,7 +152,8 @@ namespace DataStructure.测试 {
 		}
 
 		//移除节点测试
-		private static void RemoveNodeTest(int[] nums, BinarySearchTree<int> bst) {
+		private static void RemoveNodeTest(int[] nums, BinarySearchTree<int> bst)
+		{
 			Console.WriteLine($"是否包含：{removeElement} " + bst.Contains(removeElement));
 
 			Console.WriteLine("移除了：" + bst.Remove(removeElement).element);
@@ -154,7 +166,8 @@ namespace DataStructure.测试 {
 		}
 
 		//前驱结点测试
-		private static void PredecessorTest(BinarySearchTree<int> bst) {
+		private static void PredecessorTest(BinarySearchTree<int> bst)
+		{
 			Node<int> root = bst.Root;
 			Node<int> node0 = root.right ?? null;
 			Node<int> node1 = node0?.right;
@@ -169,7 +182,8 @@ namespace DataStructure.测试 {
 			Console.WriteLine("当前节点的前驱结点：" + (node4 == null ? "空" : node4.element));
 		}
 		//后驱节点测试
-		private static void SuccessorTest(BinarySearchTree<int> bst) {
+		private static void SuccessorTest(BinarySearchTree<int> bst)
+		{
 			Node<int> root = bst.Root;
 			Node<int> node0 = root.left ?? null;
 			Node<int> node1 = node0?.left;

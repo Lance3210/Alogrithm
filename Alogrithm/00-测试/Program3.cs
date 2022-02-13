@@ -3,9 +3,12 @@ using DataStructure.集合与映射;
 using DataStructure.集合与映射.哈希集合;
 using DataStructure.集合与映射.红黑树映射;
 using System;
-namespace DataStructure.测试 {
-	class Program3 {
-		static void Main3(string[] args) {
+namespace DataStructure.测试
+{
+	class Program3
+	{
+		static void Main3(string[] args)
+		{
 			//Map<int, int> map = new LinkedHashMap<int, int>();
 			//MapTest(map);
 
@@ -13,9 +16,11 @@ namespace DataStructure.测试 {
 		}
 
 		#region MapTest
-		private static void MapTest(Map<int, int> map) {
+		private static void MapTest(Map<int, int> map)
+		{
 			DateTime time = DateTime.Now;
-			for (int i = 0; i < 20; i++) {
+			for (int i = 0; i < 20; i++)
+			{
 				map.Put(i, i);
 			}
 			Console.WriteLine("------------------------------");
@@ -26,7 +31,8 @@ namespace DataStructure.测试 {
 			});
 			Console.WriteLine("------------------------------");
 
-			for (int i = 0; i < 10; i++) {
+			for (int i = 0; i < 10; i++)
+			{
 				map.Remove(i);
 			}
 			Console.WriteLine("------------------------------");
@@ -36,19 +42,23 @@ namespace DataStructure.测试 {
 		#endregion
 
 		#region HashMapTest
-		private static void HashMapTest2() {
+		private static void HashMapTest2()
+		{
 			HashMap<string, int> map = new();
 			Random random = new Random();
-			for (int i = 0; i < 1000; i++) {
+			for (int i = 0; i < 1000; i++)
+			{
 				//Person person = new Person(i, i, "test");
-				if (i == 999) {
+				if (i == 999)
+				{
 					Console.WriteLine();
 				}
 				map.Put(string.Format("{0}", i), i);
 			}
 		}
 
-		private static void HashMapTest1() {
+		private static void HashMapTest1()
+		{
 			Person person = new Person(10, 10.1f, "sb");
 			Person person2 = new Person(10, 10.1f, "sb");
 			Person person3 = new Person(12, 10.1f, "ww");
@@ -79,7 +89,8 @@ namespace DataStructure.测试 {
 		#endregion
 
 		#region TreeMapTest
-		private static void TreeMapTest() {
+		private static void TreeMapTest()
+		{
 			int testKey = 1;
 			int testKey2 = 2;
 			string testValue = "sb";
@@ -110,7 +121,8 @@ namespace DataStructure.测试 {
 		#endregion
 
 		#region TreeSetTest
-		private static void TreeSetTest(Set<int> set) {
+		private static void TreeSetTest(Set<int> set)
+		{
 			set.Add(1);
 			set.Add(2);
 			set.Add(5);

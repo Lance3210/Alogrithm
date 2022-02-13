@@ -5,16 +5,20 @@ using DataStructure.并查集.QuickUnion;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-namespace DataStructure.测试 {
-	class Program5 {
+namespace DataStructure.测试
+{
+	class Program5
+	{
 		const int count = 10000;
-		static void Main0(string[] args) {
+		static void Main0(string[] args)
+		{
 			//UnionFindTest();
 			//UnionFindTest2();
 
 		}
 
-		private static void UnionFindTest2() {
+		private static void UnionFindTest2()
+		{
 			Person p1 = new Person(1, 414, "sb1");
 			Person p2 = new Person(2, 123, "sb2");
 			Person p3 = new Person(3, 24, "sb3");
@@ -36,7 +40,8 @@ namespace DataStructure.测试 {
 			Console.WriteLine(unionFind.Find(p2).age);
 		}
 
-		private static void UnionFindTest() {
+		private static void UnionFindTest()
+		{
 			Test(new UnionFind[]{
 				new QuickFind(count),
 				new QucikUnion_Base(count),
@@ -49,14 +54,17 @@ namespace DataStructure.测试 {
 		}
 
 		//并查集测试
-		static void Test(UnionFind[] unionFind) {
+		static void Test(UnionFind[] unionFind)
+		{
 			TimeTest timeTest = new TimeTest();
 			Random random = new Random();
 			//依次进行Union
 			Console.WriteLine("Union Test");
-			for (int i = 0; i < unionFind.Length; i++) {
+			for (int i = 0; i < unionFind.Length; i++)
+			{
 				DateTime unionTime = DateTime.Now;
-				for (int j = 0; j < count; j++) {
+				for (int j = 0; j < count; j++)
+				{
 					unionFind[i].Union(random.Next(0, count), random.Next(0, count));
 				}
 				TimeSpan endUnionTime = DateTime.Now - unionTime;
@@ -66,9 +74,11 @@ namespace DataStructure.测试 {
 
 			Console.WriteLine();
 			Console.WriteLine("Find Test");
-			for (int i = 0; i < unionFind.Length; i++) {
+			for (int i = 0; i < unionFind.Length; i++)
+			{
 				DateTime unionTime = DateTime.Now;
-				for (int j = 0; j < count; j++) {
+				for (int j = 0; j < count; j++)
+				{
 					unionFind[i].Find(random.Next(0, count));
 				}
 				TimeSpan endUnionTime = DateTime.Now - unionTime;
@@ -80,20 +90,26 @@ namespace DataStructure.测试 {
 	}
 
 	//时间测试类
-	class TimeTest {
+	class TimeTest
+	{
 		Dictionary<string, TimeSpan> dic = new();
-		public void Add(Type type, TimeSpan time) {
-			if (!dic.ContainsKey(type.Name)) {
+		public void Add(Type type, TimeSpan time)
+		{
+			if (!dic.ContainsKey(type.Name))
+			{
 				dic.Add(type.Name, time);
 			}
-			else {
+			else
+			{
 				dic[type.Name] = time;
 			}
 		}
 
-		public void PrintByTime() {
+		public void PrintByTime()
+		{
 			var dicSort = from obj in dic orderby obj.Value select obj;
-			foreach (var item in dicSort) {
+			foreach (var item in dicSort)
+			{
 				Console.WriteLine(item.Key + "\t\t" + item.Value.TotalMilliseconds + " ms");
 				Console.WriteLine("-----------------------------------------------------------------------------------------");
 			}

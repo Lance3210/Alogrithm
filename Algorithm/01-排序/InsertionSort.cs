@@ -1,4 +1,5 @@
-﻿namespace Algorithm.排序 {
+﻿namespace Algorithm.排序
+{
 	//插入排序
 	//类似于扑克牌的排序，元素分为已排序，和待排序两个部分，每轮循环将待排序元素插入已排序部分
 	//逆序对：(2, 1)，(5, 3)等类型排布
@@ -11,10 +12,12 @@
 	//空间复杂度：O(1)
 	//稳定性：稳定
 	//原地算法；
-	class InsertionSort<T> : SortBase<T> {
+	class InsertionSort<T> : SortBase<T>
+	{
 		//优化2：在优化1的基础上，将交换改为挪动减少代码
 		//使用二分搜索优化比较逻辑，大大减少减少比较次数
-		public override void Sorting(T[] array) {
+		public override void Sorting(T[] array)
+		{
 			base.Sorting(array);
 			T insert;
 			int insertIndex;
@@ -22,7 +25,8 @@
 			{
 				insert = array[i];//备份待插入元素
 				insertIndex = GetInsertionIndex(i);//获取合适插入位置
-				for (int j = i; j > insertIndex; j--) {
+				for (int j = i; j > insertIndex; j--)
+				{
 					array[j] = array[j - 1];//insertIndex到i - 1的元素全部后移一位
 				}
 				array[insertIndex] = insert;
@@ -33,14 +37,17 @@
 			int begin = 0;//第一个有序元素位置
 			int end = index;//前半部分有序元素的末尾索引（开区间）
 			int mid;
-			while (begin < end) {
+			while (begin < end)
+			{
 				mid = begin + ((end - begin) >> 1);//防止直接begin + end造成的溢出，位移运算符低于加减
 
 				//这里是只要>=就往右边找，这样可以保证插入位置必定在第一个比element大的元素的位置
-				if (CompareByElement(elements[index], elements[mid]) >= 0) {
+				if (CompareByElement(elements[index], elements[mid]) >= 0)
+				{
 					begin = mid + 1;
 				}
-				else {
+				else
+				{
 					end = mid;
 				}
 			}

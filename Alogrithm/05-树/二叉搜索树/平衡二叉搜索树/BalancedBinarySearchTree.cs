@@ -1,10 +1,13 @@
 ﻿using DataStructure.树.二叉树;
 
-namespace DataStructure.树.二叉搜索树.平衡二叉搜索树 {
+namespace DataStructure.树.二叉搜索树.平衡二叉搜索树
+{
 	//抽象出统一旋转行为的抽象类
-	abstract class BalancedBinarySearchTree<T> : BinarySearchTree<T> {
+	abstract class BalancedBinarySearchTree<T> : BinarySearchTree<T>
+	{
 		//左旋转
-		protected void LeftRotate(Node<T> grand) {
+		protected void LeftRotate(Node<T> grand)
+		{
 			Node<T> p = grand.right;
 			Node<T> pLeft = p.left;
 			grand.right = pLeft;
@@ -14,7 +17,8 @@ namespace DataStructure.树.二叉搜索树.平衡二叉搜索树 {
 		}
 
 		//右旋转
-		protected void RightRotate(Node<T> grand) {
+		protected void RightRotate(Node<T> grand)
+		{
 			Node<T> p = grand.left;
 			Node<T> pRight = p.right;
 			grand.left = pRight;
@@ -24,7 +28,8 @@ namespace DataStructure.树.二叉搜索树.平衡二叉搜索树 {
 		}
 
 		//旋转后处理（父子关系调整；若是AVL树，则还需要处理高度）
-		protected virtual void AfterRotate(Node<T> grand, Node<T> p, Node<T> child) {
+		protected virtual void AfterRotate(Node<T> grand, Node<T> p, Node<T> child)
+		{
 			//修正p,grand,pLeft的父节点
 			//更新p
 			p.parent = grand.parent;
@@ -32,7 +37,8 @@ namespace DataStructure.树.二叉搜索树.平衡二叉搜索树 {
 			{
 				grand.parent.left = p;
 			}
-			else if (grand.IsRightChild) {
+			else if (grand.IsRightChild)
+			{
 				grand.parent.right = p;
 			}
 			else//grand是根节点
@@ -40,7 +46,8 @@ namespace DataStructure.树.二叉搜索树.平衡二叉搜索树 {
 				root = p;
 			}
 			//更新child
-			if (child != null) {
+			if (child != null)
+			{
 				child.parent = grand;
 			}
 			//更新grand
@@ -58,33 +65,40 @@ namespace DataStructure.树.二叉搜索树.平衡二叉搜索树 {
 		{
 			//让d成为该树根节点
 			d.parent = r.parent;
-			if (r.IsLeftChild) {
+			if (r.IsLeftChild)
+			{
 				r.parent.left = d;
 			}
-			else if (r.IsRightChild) {
+			else if (r.IsRightChild)
+			{
 				r.parent.right = d;
 			}
-			else {
+			else
+			{
 				root = d;
 			}
 
 			//处理abc
 			b.left = a;
-			if (a != null) {
+			if (a != null)
+			{
 				a.parent = b;
 			}
 			b.right = c;
-			if (c != null) {
+			if (c != null)
+			{
 				c.parent = b;
 			}
 
 			//处理efg
 			f.left = e;
-			if (e != null) {
+			if (e != null)
+			{
 				e.parent = f;
 			}
 			b.right = c;
-			if (g != null) {
+			if (g != null)
+			{
 				g.parent = f;
 			}
 

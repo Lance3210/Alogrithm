@@ -1,8 +1,10 @@
 ﻿using DataStructure.Util;
 
-namespace DataStructure.集合与映射.红黑树映射 {
+namespace DataStructure.集合与映射.红黑树映射
+{
 	//直接创建一种基于红黑树的映射节点
-	class MapNode<K, V> {
+	class MapNode<K, V>
+	{
 		public K key;
 		public V value;
 
@@ -11,7 +13,8 @@ namespace DataStructure.集合与映射.红黑树映射 {
 		public MapNode<K, V> left;
 		public MapNode<K, V> right;
 		public MapNode<K, V> parent;
-		public MapNode(K key, V value, MapNode<K, V> parent) {
+		public MapNode(K key, V value, MapNode<K, V> parent)
+		{
 			this.key = key;
 			this.value = value;
 			this.parent = parent;
@@ -26,10 +29,12 @@ namespace DataStructure.集合与映射.红黑树映射 {
 
 		public MapNode<K, V> Sibling {
 			get {
-				if (IsLeftChild) {
+				if (IsLeftChild)
+				{
 					return parent.right;
 				}
-				if (IsRightChild) {
+				if (IsRightChild)
+				{
 					return parent.left;
 				}
 				return null;
@@ -40,7 +45,8 @@ namespace DataStructure.集合与映射.红黑树映射 {
 
 		public MapNode<K, V> Grand => parent.parent;
 
-		public MapNode<K, V> Clone() {
+		public MapNode<K, V> Clone()
+		{
 			return MemberwiseClone() as MapNode<K, V>;
 		}
 	}

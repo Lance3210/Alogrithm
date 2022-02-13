@@ -1,6 +1,8 @@
-﻿namespace DataStructure.Util {
+﻿namespace DataStructure.Util
+{
 	//颜色枚举
-	enum RBNodeColor {
+	enum RBNodeColor
+	{
 		RED,
 		BLACK
 	}

@@ -1,11 +1,14 @@
-﻿namespace DataStructure.树.二叉树 {
+﻿namespace DataStructure.树.二叉树
+{
 	//节点类
-	public class Node<T> {
+	public class Node<T>
+	{
 		public T element;
 		public Node<T> left;
 		public Node<T> right;
 		public Node<T> parent;
-		public Node(T element, Node<T> parent) {
+		public Node(T element, Node<T> parent)
+		{
 			this.element = element;
 			this.parent = parent;
 		}
@@ -25,10 +28,12 @@
 		//获取兄弟节点
 		public Node<T> Sibling {
 			get {
-				if (IsLeftChild) {
+				if (IsLeftChild)
+				{
 					return parent.right;
 				}
-				if (IsRightChild) {
+				if (IsRightChild)
+				{
 					return parent.left;
 				}
 				return null;
@@ -42,7 +47,8 @@
 		public Node<T> Grand => parent.parent;
 
 		//浅拷贝
-		public Node<T> Clone() {
+		public Node<T> Clone()
+		{
 			return MemberwiseClone() as Node<T>;
 		}
 	}

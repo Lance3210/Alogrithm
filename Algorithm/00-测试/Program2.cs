@@ -7,15 +7,19 @@ using Algorithm.递归;
 using System;
 using System.Collections.Generic;
 
-namespace Algorithm.测试 {
-	static class Program2 {
-		static void Main0(string[] args) {
+namespace Algorithm.测试
+{
+	static class Program2
+	{
+		static void Main0(string[] args)
+		{
 			TimeTestUtil.TimeTest(null, 0);
 			DPTest2();
 		}
 
 		//动态规划
-		private static void DPTest2() {
+		private static void DPTest2()
+		{
 			string str1 = "123412341234123412341234123412341234";
 			string str2 = "23412341234123412341234123412341234";
 			DynamicProgramming dp = new DynamicProgramming();
@@ -40,7 +44,8 @@ namespace Algorithm.测试 {
 			TimeTestUtil.TimeTest(dp.MaxValueExactly, values, weights, capacity);
 		}
 
-		private static void DPTest1() {
+		private static void DPTest1()
+		{
 			int count = 60;
 			int[] coins = new int[] { 5, 20, 25 };
 			DynamicProgramming dp = new DynamicProgramming();
@@ -49,26 +54,31 @@ namespace Algorithm.测试 {
 			TimeTestUtil.TimeTest(dp.CoinChange_Iteration, count);
 			TimeTestUtil.TimeTest(dp.CoinChange, coins, count);
 			List<int> list = dp.CoinChange_Types(coins, count);
-			if (list == null) {
+			if (list == null)
+			{
 				return;
 			}
-			foreach (var item in list) {
+			foreach (var item in list)
+			{
 				Console.WriteLine(item);
 			}
 		}
 
 		//分治
-		private static void DivideTest() {
+		private static void DivideTest()
+		{
 			int[] nums = new int[] { 5, 4, -1, 7, 8 };
 			Console.WriteLine(DivideAndConper.MaxSubarry(nums));
 		}
 
 		//贪心
-		private static void GreedyTest() {
+		private static void GreedyTest()
+		{
 			Article[] articles = new Article[] {
 				new Article(35, 10), new Article(30, 40),new Article(60, 30), new Article(50, 50),
 				new Article(40, 35), new Article(10, 40),new Article(25, 30)};
-			foreach (var item in articles) {
+			foreach (var item in articles)
+			{
 				Console.WriteLine(item.ToString());
 			}
 			Console.WriteLine("------------------价值主导-----------------------");
@@ -91,7 +101,8 @@ namespace Algorithm.测试 {
 		}
 
 		//回溯
-		private static void BackTrackingTest() {
+		private static void BackTrackingTest()
+		{
 			BackTracking backTracking = new BackTracking();
 			TimeTestUtil.TimeTest(() => {
 				Console.WriteLine("时间测试");
@@ -102,14 +113,16 @@ namespace Algorithm.测试 {
 		}
 
 		//递归转迭代
-		private static void ConvertToIteration() {
+		private static void ConvertToIteration()
+		{
 			int count = 10000;
 			TimeTestUtil.TimeTest(Recursion.Log, count);
 			TimeTestUtil.TimeTest(Recursion.Log2, count);
 		}
 
 		//斐波那契数列
-		private static void FibTest() {
+		private static void FibTest()
+		{
 			int count = 10;
 			TimeTestUtil.TimeTest<int>(Recursion.Fib_Base, count);
 			TimeTestUtil.TimeTest<int>(Recursion.Fib_Array, count);

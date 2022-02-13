@@ -1,9 +1,14 @@
-﻿using System;
-using Exercises.数组与排序;
-namespace Exercises.测试 {
-	class Program {
-		static void Main(string[] args) {
+﻿using Exercises.字符串;
 
+namespace Test
+{
+	public static class Program
+	{
+		public static void Main(string[] args)
+		{
+			StringExe s = new StringExe();
+			bool b = s.IsFlipedString("123", "321");
 		}
+
 	}
 }

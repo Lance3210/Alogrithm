@@ -1,8 +1,10 @@
 ﻿using System;
 
-namespace DataStructure.集合与映射 {
+namespace DataStructure.集合与映射
+{
 	//集合基类
-	public abstract class Set<T> {
+	public abstract class Set<T>
+	{
 		public int Size => GetSize();
 		public bool IsEmpty => Size == 0;
 		protected abstract int GetSize();

@@ -2,13 +2,17 @@
 using System;
 using System.Collections.Generic;
 
-namespace Algorithm.测试 {
-	static class Program1 {
-		static void Main1(string[] args) {
+namespace Algorithm.测试
+{
+	static class Program1
+	{
+		static void Main1(string[] args)
+		{
 			int[] array = new int[count];
 			RandomNums(array);
 			Test[] tests = new Test[count];
-			for (int i = 0; i < tests.Length; i++) {
+			for (int i = 0; i < tests.Length; i++)
+			{
 				tests[i] = new Test(array[i], array[i]);
 			}
 
@@ -20,7 +24,8 @@ namespace Algorithm.测试 {
 		static int count = 6000;
 
 		//创建数组与算法
-		static void Sorting(Test[] tests) {
+		static void Sorting(Test[] tests)
+		{
 			SortTest(tests, new SortBase<Test>[]
 			{
 				new BubbleSort<Test>(),
@@ -31,26 +36,31 @@ namespace Algorithm.测试 {
 				new QuickSort<Test>(),
 				new ShellSort<Test>()
 			});
-			if (count <= 10) {
+			if (count <= 10)
+			{
 				Traversal(tests);
 			}
 		}
 		//计算排序测试
-		static void Sorting2(int[] array) {
+		static void Sorting2(int[] array)
+		{
 			SortTest(array, new SortBase<int>[]{
 				new CountingSort<int>(),
 				new RadixSort<int>()
 			});
-			if (count <= 10) {
+			if (count <= 10)
+			{
 				Traversal(array);
 			}
 		}
 		//排序测试
-		static void SortTest(Test[] array, params SortBase<Test>[] sorts) {
+		static void SortTest(Test[] array, params SortBase<Test>[] sorts)
+		{
 			//创建数个相同数组用于独立算法测试
 			List<Test[]> lists = new List<Test[]>(sorts.Length);
 			lists.Add(array);//先进入一个，后面少copy一份
-			for (int i = 0; i < sorts.Length - 1; i++) {
+			for (int i = 0; i < sorts.Length - 1; i++)
+			{
 				Test[] copy = new Test[array.Length];
 				array.CopyTo(copy, 0);
 				lists.Add(copy);
@@ -59,7 +69,8 @@ namespace Algorithm.测试 {
 			PrintTest[] prints = new PrintTest[sorts.Length];
 			DateTime time;
 			//依次进行排序
-			for (int i = 0; i < sorts.Length; i++) {
+			for (int i = 0; i < sorts.Length; i++)
+			{
 				time = DateTime.Now;
 				sorts[i].Sorting(lists[i]);
 				prints[i] = new PrintTest(sorts[i].GetType().Name,
@@ -72,7 +83,8 @@ namespace Algorithm.测试 {
 			SortBase<PrintTest> sort = new MergeSort<PrintTest>();
 			sort.Sorting(prints);
 			//从时间快到慢遍历打印
-			foreach (var item in prints) {
+			foreach (var item in prints)
+			{
 				Console.WriteLine(item.name + "\t\t" + item.endTime.TotalMilliseconds + " ms");
 				Console.Write($"CompareCount: {item.compareCount}\t\tSwapCount: {item.swapCount}\t\tIsStable: {item.isStable}\t\t");
 				Console.WriteLine();
@@ -80,9 +92,12 @@ namespace Algorithm.测试 {
 			}
 			//比较排序后是否一致
 			bool isEqual = true;
-			for (int i = 0; i < lists.Count; i++) {
-				for (int j = i + 1; j < lists.Count; j++) {
-					if (!EqualsArray(lists[i], lists[j])) {
+			for (int i = 0; i < lists.Count; i++)
+			{
+				for (int j = i + 1; j < lists.Count; j++)
+				{
+					if (!EqualsArray(lists[i], lists[j]))
+					{
 						isEqual = false;
 						break;
 					}
@@ -93,11 +108,13 @@ namespace Algorithm.测试 {
 		}
 
 		//整数排序测试
-		static void SortTest(int[] array, params SortBase<int>[] sorts) {
+		static void SortTest(int[] array, params SortBase<int>[] sorts)
+		{
 			//创建数个相同数组用于独立算法测试
 			List<int[]> lists = new List<int[]>(sorts.Length);
 			lists.Add(array);//先进入一个，后面少copy一份
-			for (int i = 0; i < sorts.Length - 1; i++) {
+			for (int i = 0; i < sorts.Length - 1; i++)
+			{
 				int[] copy = new int[array.Length];
 				array.CopyTo(copy, 0);
 				lists.Add(copy);
@@ -106,7 +123,8 @@ namespace Algorithm.测试 {
 			PrintTest[] prints = new PrintTest[sorts.Length];
 			DateTime time;
 			//依次进行排序
-			for (int i = 0; i < sorts.Length; i++) {
+			for (int i = 0; i < sorts.Length; i++)
+			{
 				time = DateTime.Now;
 				sorts[i].Sorting(lists[i]);
 				prints[i] = new PrintTest(sorts[i].GetType().Name,
@@ -119,7 +137,8 @@ namespace Algorithm.测试 {
 			SortBase<PrintTest> sort = new MergeSort<PrintTest>();
 			sort.Sorting(prints);
 			//从时间快到慢遍历打印
-			foreach (var item in prints) {
+			foreach (var item in prints)
+			{
 				Console.WriteLine(item.name + "\t\t" + item.endTime.TotalMilliseconds + " ms");
 				Console.Write($"CompareCount: {item.compareCount}\t\tSwapCount: {item.swapCount}\t\tIsStable: {item.isStable}\t\t");
 				Console.WriteLine();
@@ -127,9 +146,12 @@ namespace Algorithm.测试 {
 			}
 			//比较排序后是否一致
 			bool isEqual = true;
-			for (int i = 0; i < lists.Count; i++) {
-				for (int j = i + 1; j < lists.Count; j++) {
-					if (!EqualsArray(lists[i], lists[j])) {
+			for (int i = 0; i < lists.Count; i++)
+			{
+				for (int j = i + 1; j < lists.Count; j++)
+				{
+					if (!EqualsArray(lists[i], lists[j]))
+					{
 						isEqual = false;
 						break;
 					}
@@ -186,14 +208,16 @@ namespace Algorithm.测试 {
 		#endregion
 
 		//稳定性测试
-		public static bool IsStable(SortBase<Test> sort) {
+		public static bool IsStable(SortBase<Test> sort)
+		{
 			if (sort is ShellSort<Test>)//希尔排序本质是不稳定的
 			{
 				return false;
 			}
 
 			Test[] tests = new Test[10];
-			for (int i = 0; i < tests.Length; i++) {
+			for (int i = 0; i < tests.Length; i++)
+			{
 				tests[i] = new Test(i * 10, 1);
 			}
 			Test[] tests2 = new Test[tests.Length];
@@ -201,17 +225,21 @@ namespace Algorithm.测试 {
 
 			sort.Sorting(tests);
 
-			for (int i = 0; i < tests.Length; i++) {
-				if (tests[i].height.CompareTo(tests2[i].height) != 0) {
+			for (int i = 0; i < tests.Length; i++)
+			{
+				if (tests[i].height.CompareTo(tests2[i].height) != 0)
+				{
 					return false;
 				}
 			}
 			return true;
 		}
 		//整数稳定性测试
-		public static bool IsStable(SortBase<int> sort) {
+		public static bool IsStable(SortBase<int> sort)
+		{
 			int[] tests = new int[10];
-			for (int i = 0; i < tests.Length; i++) {
+			for (int i = 0; i < tests.Length; i++)
+			{
 				tests[i] = i * 10;
 			}
 			int[] tests2 = new int[tests.Length];
@@ -219,8 +247,10 @@ namespace Algorithm.测试 {
 
 			sort.Sorting(tests);
 
-			for (int i = 0; i < tests.Length; i++) {
-				if (tests[i].CompareTo(tests2[i]) != 0) {
+			for (int i = 0; i < tests.Length; i++)
+			{
+				if (tests[i].CompareTo(tests2[i]) != 0)
+				{
 					return false;
 				}
 			}
@@ -228,14 +258,18 @@ namespace Algorithm.测试 {
 		}
 
 		//随机元素生成
-		static void RandomNums(Test[] array) {
+		static void RandomNums(Test[] array)
+		{
 			Random random = new Random();
-			for (int i = 0; i < array.Length; i++) {
+			for (int i = 0; i < array.Length; i++)
+			{
 				array[i] = new Test(random.Next(0, array.Length + 1), random.Next(0, array.Length + 1));
 			}
-			if (count <= 10) {
+			if (count <= 10)
+			{
 				Console.Write("原始数据： ");
-				for (int i = 0; i < count; i++) {
+				for (int i = 0; i < count; i++)
+				{
 					Console.Write(array[i].age + " ");
 				}
 				Console.WriteLine();
@@ -243,14 +277,18 @@ namespace Algorithm.测试 {
 			}
 		}
 		//随机整数生成
-		static void RandomNums(int[] array) {
+		static void RandomNums(int[] array)
+		{
 			Random random = new Random();
-			for (int i = 0; i < array.Length; i++) {
+			for (int i = 0; i < array.Length; i++)
+			{
 				array[i] = random.Next(0, array.Length + 1);
 			}
-			if (count <= 10) {
+			if (count <= 10)
+			{
 				Console.Write("原始数据： ");
-				for (int i = 0; i < count; i++) {
+				for (int i = 0; i < count; i++)
+				{
 					Console.Write(array[i] + " ");
 				}
 				Console.WriteLine();
@@ -260,10 +298,13 @@ namespace Algorithm.测试 {
 
 		//数组比较
 		static int equalCount = 0;
-		static bool EqualsArray<T>(T[] array1, T[] array2) where T : IComparable<T> {
+		static bool EqualsArray<T>(T[] array1, T[] array2) where T : IComparable<T>
+		{
 			++equalCount;
-			for (int i = 0; i < array1.Length; i++) {
-				if (array1[i].CompareTo(array2[i]) != 0) {
+			for (int i = 0; i < array1.Length; i++)
+			{
+				if (array1[i].CompareTo(array2[i]) != 0)
+				{
 					return false;
 				}
 			}
@@ -271,16 +312,20 @@ namespace Algorithm.测试 {
 		}
 
 		//元素遍历打印
-		static void Traversal(Test[] array) {
-			for (int i = 0; i < array.Length; i++) {
+		static void Traversal(Test[] array)
+		{
+			for (int i = 0; i < array.Length; i++)
+			{
 				Console.Write(array[i].age + " ");
 			}
 			Console.WriteLine();
 			Console.WriteLine("-----------------------------------------------------");
 		}
 		//整数遍历打印
-		public static void Traversal(int[] array) {
-			for (int i = 0; i < array.Length; i++) {
+		public static void Traversal(int[] array)
+		{
+			for (int i = 0; i < array.Length; i++)
+			{
 				Console.Write(array[i] + " ");
 			}
 			Console.WriteLine();
@@ -289,10 +334,12 @@ namespace Algorithm.测试 {
 	}
 
 	//测试用类
-	class Test : IComparable<Test> {
+	class Test : IComparable<Test>
+	{
 		public int age;
 		public int height;
-		public Test(int height, int age) {
+		public Test(int height, int age)
+		{
 			this.height = height;
 			this.age = age;
 		}
@@ -301,28 +348,34 @@ namespace Algorithm.测试 {
 			return age - other.age;
 		}
 	}
-	class PrintTest : IComparable<PrintTest> {
+	class PrintTest : IComparable<PrintTest>
+	{
 		public string name;
 		public TimeSpan endTime;
 		public int compareCount;
 		public int swapCount;
 		public bool isStable;
 
-		public PrintTest(string name, TimeSpan endTime, int compareCount, int swapCount) {
+		public PrintTest(string name, TimeSpan endTime, int compareCount, int swapCount)
+		{
 			this.name = name;
 			this.endTime = endTime;
 			this.compareCount = compareCount;
 			this.swapCount = swapCount;
 		}
 
-		public int CompareTo(PrintTest other) {
-			if ((endTime - other.endTime).TotalMilliseconds > 0) {
+		public int CompareTo(PrintTest other)
+		{
+			if ((endTime - other.endTime).TotalMilliseconds > 0)
+			{
 				return 1;
 			}
-			else if ((endTime - other.endTime).TotalMilliseconds < 0) {
+			else if ((endTime - other.endTime).TotalMilliseconds < 0)
+			{
 				return -1;
 			}
-			else {
+			else
+			{
 				return 0;
 			}
 		}

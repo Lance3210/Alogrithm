@@ -1,5 +1,7 @@
-﻿namespace DataStructure.队列 {
-	public abstract class MyQueue<T> {
+﻿namespace DataStructure.队列
+{
+	public abstract class MyQueue<T>
+	{
 		protected int size;
 		public int Size => size;
 		public abstract bool IsEmpty();

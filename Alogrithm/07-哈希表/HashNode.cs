@@ -1,8 +1,10 @@
 ﻿using DataStructure.Util;
 
-namespace DataStructure.哈希表 {
+namespace DataStructure.哈希表
+{
 	//哈希表用MapNode
-	class HashNode<K, V> {
+	class HashNode<K, V>
+	{
 		public K key;
 		public V value;
 		//添加一个hashCode属性
@@ -13,7 +15,8 @@ namespace DataStructure.哈希表 {
 		public HashNode<K, V> left;
 		public HashNode<K, V> right;
 		public HashNode<K, V> parent;
-		public HashNode(K key, V value, HashNode<K, V> parent) {
+		public HashNode(K key, V value, HashNode<K, V> parent)
+		{
 			this.key = key;
 			this.value = value;
 			this.parent = parent;
@@ -29,10 +32,12 @@ namespace DataStructure.哈希表 {
 
 		public HashNode<K, V> Sibling {
 			get {
-				if (IsLeftChild) {
+				if (IsLeftChild)
+				{
 					return parent.right;
 				}
-				if (IsRightChild) {
+				if (IsRightChild)
+				{
 					return parent.left;
 				}
 				return null;
@@ -43,7 +48,8 @@ namespace DataStructure.哈希表 {
 
 		public HashNode<K, V> Grand => parent.parent;
 
-		public HashNode<K, V> Clone() {
+		public HashNode<K, V> Clone()
+		{
 			return MemberwiseClone() as HashNode<K, V>;
 		}
 	}

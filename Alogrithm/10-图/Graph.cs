@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DataStructure.图 {
+namespace DataStructure.图
+{
 	//图的抽象数据结构
-	public abstract class Graph<V, E> {
+	public abstract class Graph<V, E>
+	{
 		public abstract int VerticesSize { get; }
 		public bool IsEmpty => VerticesSize == 0;
 		public abstract int EdgesSize { get; }
@@ -21,33 +23,41 @@ namespace DataStructure.图 {
 		public abstract Dictionary<V, Dictionary<V, PathInfo<V, E>>> ShortestPath_Floyd(Func<E, E, E> add);//最短路径 BellmanFord
 	}
 	//抽象边信息
-	public class EdgeInfo<V, E> {
+	public class EdgeInfo<V, E>
+	{
 		public V From { get; }
 		public V To { get; }
 		public E Weight { get; }
-		public EdgeInfo(V from, V to, E weight) {
+		public EdgeInfo(V from, V to, E weight)
+		{
 			From = from;
 			To = to;
 			Weight = weight;
 		}
 	}
 	//最短路径信息
-	public class PathInfo<V, E> {
+	public class PathInfo<V, E>
+	{
 		public E Weight { get; set; }
 		public LinkedList<EdgeInfo<V, E>> EdgeInfos { get; }
-		public PathInfo() {
+		public PathInfo()
+		{
 			Weight = default;
 			EdgeInfos = new LinkedList<EdgeInfo<V, E>>();
 		}
-		public PathInfo(E weight) {
+		public PathInfo(E weight)
+		{
 			Weight = weight;
 			EdgeInfos = new LinkedList<EdgeInfo<V, E>>();
 		}
-		public void AddPath(EdgeInfo<V, E> edgeInfo) {
+		public void AddPath(EdgeInfo<V, E> edgeInfo)
+		{
 			EdgeInfos.AddLast(edgeInfo);
 		}
-		public void AddPaths(LinkedList<EdgeInfo<V, E>> edgeInfos) {
-			foreach (var item in edgeInfos) {
+		public void AddPaths(LinkedList<EdgeInfo<V, E>> edgeInfos)
+		{
+			foreach (var item in edgeInfos)
+			{
 				EdgeInfos.AddLast(item);
 			}
 		}
